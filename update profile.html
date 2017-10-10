@@ -1,0 +1,68 @@
+<?php
+ $db = mysqli_connect('localhost','username','password','USERS')
+ or die('Error connecting to MySQL server.');
+?>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Update Personal Details</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+	  <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+  </head>
+
+  <body style="background-color:grey">
+
+    <form action="direct.php" method="REQUEST">
+      <div class="container">
+        <div class="jumbotron" style="width:100%; height:100%; margin-top:11%;">
+          <div style="margin-left: 11%;">
+          <p class="text-center">
+            <h1 >Change Profile Details</h1>
+            <div class="form-group">
+              <label class=" control-label">Full Name:
+                <input class="form-control" id="focusedInput" type="text" name="fname" placeholder="Full Name">
+                </label><br>
+            </div>
+            <div class="form-group">
+              <label class=" control-label">Password:
+                <input class="form-control" id="focusedInput" type="password" name="password" placeholder="Password">
+                </label><br>
+            </div>
+            <div class="form-group">
+              <label class=" control-label">Email:
+                <input class="form-control" id="focusedInput" type="email" name="em" placeholder="Email">
+                </label><br>
+            </div>
+            <div class="form-group">
+              <label class=" control-label">Phone Number:
+                <input class="form-control" id="focusedInput" type="number" name="pnum" placeholder="Phone Number">
+                </label><br>
+            </div>
+            <div class="form-group">
+              <label class=" control-label">Address:
+                <input class="form-control" id="focusedInput" type="text" name="adr" placeholder="Address">
+                </label><br>
+            </div>
+            <input type="submit" name="submit" value="Update">
+          </p>
+        </div>
+      </div>
+    </form>
+    <?php
+    if(isset ($_REQUEST['submit'])){
+
+      $username=$_REQUEST['username'];
+      $password=$_REQUEST['password'];
+    }
+    else {
+
+    }
+      ?>
+
+
+  <script type="text/javascript" src="bootstrap/jquery.js"></script>
+  <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+  </body>
+</html>
