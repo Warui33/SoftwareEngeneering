@@ -1,0 +1,134 @@
+<?php
+//Step1
+ $db = mysqli_connect('localhost','username','password','USERS')
+ or die('Error connecting to MySQL server.');
+?>
+
+
+<?php
+  $query="SELECT * FROM users";
+  $result=mysqli_query($connection, $query);
+if (!$result) {
+  die("Database query error");
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>manage users</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+</head>
+<body style="background-color:grey">
+<div class="container-fluid">
+	<div class="jumbotron">
+		<h3>Users</h3>
+	</div>
+
+	<form action="direct2.php" method="POST">
+		<div class="form-group">
+      <label>Full Name
+        <input type="text" name="fn" value="">
+      </label>
+      <label for="">Email
+        <input type="email" name="em" value="">
+      </label>
+			<label>Phone Number
+				<input type="number" name="pn" value="">
+			</label>
+      <label>Username
+        <input type="text" name="un" value="">
+      </label>
+      <label for="">Password: <input type="password" name="pass" value=""></label>
+      <label>User Type
+        <input type="text" name="ut" value="">
+      </label>
+      <label>Access Time
+        <input type="text" name="at" value="">
+      </label>
+      <label>Image
+        <input type="file" name="img" value="">
+      </label>
+      <label>Address
+        <input type="text" name="add" value="">
+      </label>
+			<input type="submit" name="Submit" value="Submit">
+		</div>
+
+
+
+
+
+
+	</form>
+	<div class="table-responsive">
+
+  <table class="table" style="border: 2px solid black">
+
+  <thead>
+    <tr class="success">
+      <th>userId</th>
+      <th>Full_Name</th>
+      <th>email</th>
+      <th>phone_Number</th>
+      <th>User_Name</th>
+      <th>Password</th>
+			<th>UserType</th>
+      <th>AccessTime</th>
+      <th>Image</th>
+      <th>Address</th>
+      <th>Operations</th>
+
+    </tr>
+
+  </thead>
+
+<?php
+  while ($row = mysqli_fetch_assoc($result)) {
+
+    echo "<tr >".
+				"<td>$row[userId]"."</td>".
+				"<td>$row[Full_Name]"."</td>".
+				"<td>$row[email]"."</td>".
+				"<td>$row[phone_Number]"."</td>".
+				"<td>$row[User_Name]"."</td>".
+				"<td>$row[Password]"."</td>".
+        "<td>$row[UserType]"."</td>".
+        "<td>$row[AccessTime]"."</td>".
+        "<td>"."<img src='$row[Image]' />"."</td>".
+        "<td>$row[Address]"."</td>".
+				"<td <div class='table6' align='center'>
+					<a href='connector.php' class='btn btn-success'> Edit</a>
+					<a href='connector.php?del_id=$row[userId]' class='btn btn-danger'>Delete</a>
+				</td>".
+			"</tr>";
+    }
+     ?>
+
+</table>
+</div>
+</div>
+<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript"</script>
+</body>
+</html>
+
+<?php
+if (isset($_GET['del_id'])) {
+	$qry_delete="DELETE FROM users WHERE userId=".$_GET['del_id'];
+	if(mysqli_query($connection, $qry_delete)){
+		//reload page
+		echo "success";
+	}
+	else {
+		die("query failed".mysqli_error($connection));
+	}
+}
+?>
+
+
+<?php
+	//5.close database connection
+	mysqli_close($connection);
+
+?>

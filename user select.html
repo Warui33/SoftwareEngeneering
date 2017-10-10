@@ -1,0 +1,24 @@
+<?php
+//Step1
+ $db = mysqli_connect('localhost','username','password','USERS')
+ or die('Error connecting to MySQL server.');
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Super User</title>
+	<h1>CHOOSE YOUR NEXT ACTION</h1>
+</head>
+<body style="background-color:grey">
+<?php
+	$username = $_SESSION['username'];
+	echo "you are logged in as ".$username;
+?>
+<form action='' method='post'>
+<a href="update%20profile.html"><button type='submit' name='reset'>Update Profile</button></a>
+  
+  <a href="manage%20users.html"><button type='submit' name='reset'>Manage Other Users</button> 
+   <a href="logout.html"><button type='submit' name='reset'>Logout</button>
+</form>
+</body>
+</html>
